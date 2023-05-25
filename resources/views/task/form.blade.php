@@ -18,9 +18,19 @@
         </div>
         <div class="form-group">
             {{ Form::label('category_id') }}
-            {{ Form::select('category_id', $categories, $task->category_id, ['class' => 'form-control' . ($errors->has('category_id') ? ' is-invalid' : ''), 'placeholder' => 'Select Category']) }}
+            {{ Form::select('category_id', $categories, $task->category_id, ['class' => 'form-control' . ($errors->has('category_id') ? ' is-invalid' : ''), 'placeholder' => 'Category Id']) }}
             {!! $errors->first('category_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('Completed') }}
+            {{ Form::checkbox('Completed', $task->Completed, ['class' => 'form-control' . ($errors->has('Completed') ? ' is-invalid' : ''), 'placeholder' => 'Completed']) }}
+            {!! $errors->first('Completed', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        {{-- <div class="form-group">
+            <label for="Completed">Completado</label>
+            <input type="checkbox" id="Completed" name="Completed" value="{{$task->Completed ? '1' : '0' }}" >
+        </div> --}}
+        
 
     </div>
     <div class="box-footer mt20">

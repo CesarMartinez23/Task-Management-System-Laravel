@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Due_Date
  * @property $user_id
  * @property $category_id
+ * @property $Completed
  * @property $created_at
  * @property $updated_at
  *
@@ -23,13 +24,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-
+    
     static $rules = [
-        'Name' => 'required',
-        'Description' => 'required',
-        'Due_Date' => 'required',
+		'Name' => 'required',
+		'Description' => 'required',
+		'Due_Date' => 'required',
         'user_id' => 'required|exists:users,id',
-        'category_id' => 'required',
+		'category_id' => 'required',
+		'Completed' => 'nullable|boolean',
     ];
 
     protected $perPage = 20;
@@ -39,7 +41,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['Name', 'Description', 'Due_Date', 'user_id', 'category_id'];
+    protected $fillable = ['Name','Description','Due_Date','user_id','category_id','Completed'];
 
 
     /**
@@ -49,15 +51,15 @@ class Task extends Model
     {
         return $this->hasOne('App\Models\Category', 'id', 'category_id');
     }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
-        // return $this->hasOne('App\Models\User', 'id', 'user_id');
+        //return $this->hasOne('App\Models\User', 'id', 'user_id');
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    
 
 }

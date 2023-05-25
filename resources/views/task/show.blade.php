@@ -34,11 +34,15 @@
                         </div>
                         <div class="form-group">
                             <strong>User Id:</strong>
-                            {{ $task->user_id }}
+                            {{ $task->user->name }}
                         </div>
                         <div class="form-group">
                             <strong>Category Id:</strong>
-                            {{ $task->category_id }}
+                            {{ $task->category->Name }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Completed:</strong>
+                            {{ $task->Completed }}
                         </div>
 
                     </div>

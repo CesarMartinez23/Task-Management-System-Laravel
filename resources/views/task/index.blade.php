@@ -39,8 +39,9 @@
 										<th>Name</th>
 										<th>Description</th>
 										<th>Due Date</th>
-										<th>User</th>
-										<th>Category</th>
+										<th>User Id</th>
+										<th>Category Id</th>
+										<th>Completed</th>
 
                                         <th></th>
                                     </tr>
@@ -54,7 +55,8 @@
 											<td>{{ $task->Description }}</td>
 											<td>{{ $task->Due_Date }}</td>
 											<td>{{ $task->user->name }}</td>
-											<td>{{ $task->category->Name }}</td>
+											<td>{{ $task->Category->Name }}</td>
+											<td>{{ $task->Completed ? 'Completada' : 'Sin Completar' }}</td>
 
                                             <td>
                                                 <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">

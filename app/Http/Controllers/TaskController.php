@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Task;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 /**
@@ -46,8 +46,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->merge(['user_id' => auth()->user()->id]);
-
-        request()->validate(Task::$rules);
+        //request()->validate(Task::$rules);
 
         $task = Task::create($request->all());
 
@@ -64,8 +63,8 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-
-        return view('task.show', compact('task'));
+        $categories = Category::pluck('Name', 'id');
+        return view('task.show', compact('task','categories'));
     }
 
     /**
@@ -78,8 +77,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         $categories = Category::pluck('Name', 'id');
-
-        return view('task.edit', compact('task', 'categories'));
+        return view('task.edit', compact('task','categories'));
     }
 
     /**
@@ -91,9 +89,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $task->update($request->all());
-        // request()->validate(Task::$rules);
+        //request()->validate(Task::$rules);
 
+        $task->update($request->all());
 
         return redirect()->route('tasks.index')
             ->with('success', 'Task updated successfully');
